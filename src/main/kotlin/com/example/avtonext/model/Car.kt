@@ -1,5 +1,8 @@
 package com.example.avtonext.model
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIdentityReference
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -9,8 +12,10 @@ data class Car (
 		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 		val id: Long = 0,
 
-		@get: NotNull(message = "Please enter markId")
-		val markId: Long = 0,
+		@ManyToOne
+		@get: NotNull(message = "Please enter modelId")
+		@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator::class, property = "id")
+		val mark: Mark,
 
 		@get: NotNull(message = "Please enter modelId")
 		val modelId: Long = 0,
@@ -19,7 +24,7 @@ data class Car (
 		val fuelId: Long = 0,
 
 		@get: NotNull(message = "Please enter seat type")
-		val seatId: Seat ?= null,
+		val seatId: Long = 0,
 
 		@get: NotNull(message = "Please enter doorsId")
 		val doorsId: Long = 0,

@@ -35,13 +35,13 @@ class CarController(private val carRepository: CarRepository) {
         return carRepository.findById(carId).map { existingCar ->
             val updatedCar: Car = existingCar
                     .copy(
-                            markId = newCar.markId,
+                            mark = newCar.mark,
                             modelId = newCar.modelId,
                             type = newCar.type,
                             price = newCar.price,
                             mileage = newCar.mileage,
                             fuelId = newCar.fuelId,
-                            seats = newCar.seats,
+                            seatId = newCar.seatId,
                             ccm = newCar.ccm,
                             power = newCar.power,
                             doorsId = newCar.doorsId
